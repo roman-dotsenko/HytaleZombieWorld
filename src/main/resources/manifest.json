@@ -1,20 +1,20 @@
 {
-    "Group": "HytaleModding",
-    "Name": "ExamplePlugin",
+    "Group": "HytaleModds",
+    "Name": "ZombieWorld",
     "Version": "0.0.0",
     "Description": "Description of your plugin",
     "Authors": [
         {
-            "Name": "Your Name",
+            "Name": "Asorik",
             "Email": "your.email@example.com",
             "Url": "https://your-website.com"
         }
     ],
     "Website": "https://your-plugin-website.com",
     "DisabledByDefault": false,
-    "IncludesAssetPack": false,
+    "IncludesAssetPack": true,
     "Dependencies": {},
     "OptionalDependencies": {},
     "ServerVersion": "*",
-    "Main": "dev.hytalemodding.ExamplePlugin"
+    "Main": "dev.hytalemodding.Main"
 }

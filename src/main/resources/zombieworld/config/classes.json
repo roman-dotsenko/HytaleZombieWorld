@@ -1,0 +1,26 @@
+{
+  "classes": [
+    {
+      "class_id": "berserker",
+      "name": "Berserker",
+      "requirements": {
+        "stat_id": "melee_attack_power",
+        "min_level": 5
+      },
+      "perks": [
+        { "id": "adrenaline", "scaling_type": "missing_health_percent", "multiplier": 0.5 }
+      ]
+    },
+    {
+      "class_id": "sharpshooter",
+      "name": "Sharpshooter",
+      "requirements": {
+        "stat_id": "ranged_velocity",
+        "min_level": 5
+      },
+      "perks": [
+        { "id": "headshot_multiplier", "multiplier": 2.0 }
+      ]
+    }
+  ]
+}

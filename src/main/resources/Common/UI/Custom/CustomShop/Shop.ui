@@ -1,0 +1,35 @@
+$Common = "Common.ui";
+
+Group {
+  LayoutMode: Center;
+
+  Group #ShopPanel2 {
+    Anchor: (Width: 360, Height: 220);
+    LayoutMode: Top;
+    Padding: (Full: 12);
+
+    Label #ShopTitle2 {
+      Style: (FontSize: 26, HorizontalAlignment: Center);
+      Anchor: (Height: 32);
+      Text: "Weapon Shop";
+    }
+
+    Label #CoinCount {
+      Style: (FontSize: 18);
+      Anchor: (Height: 24, Top: 8);
+      Text: "Coins: 0";
+    }
+
+    TextButton #BuyBronzeButton {
+      Style: $Common.@DefaultButtonStyle;
+      Anchor: (Height: 40, Top: 12);
+      Text: "Buy Bronze Sword (100)";
+    }
+
+    TextButton #CloseButton {
+      Style: $Common.@DefaultButtonStyle;
+      Anchor: (Height: 36, Top: 10);
+      Text: "Close";
+    }
+  }
+}

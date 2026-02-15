@@ -1,0 +1,24 @@
+{
+  "stats": [
+    {
+      "stat_id": "melee_attack_power",
+      "base_cost": 100,
+      "cost_multiplier": 1.5,
+      "max_level": 10,
+      "increments": [
+        { "level": 1, "bonus_damage": 2 },
+        { "level": 5, "unlocks_class_pivot": true }
+      ]
+    },
+    {
+      "stat_id": "ranged_velocity",
+      "base_cost": 120,
+      "cost_multiplier": 1.6,
+      "max_level": 10,
+      "increments": [
+        { "level": 1, "bonus_velocity": 0.1 },
+        { "level": 5, "unlocks_class_pivot": true }
+      ]
+    }
+  ]
+}

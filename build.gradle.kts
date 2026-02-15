@@ -8,4 +8,5 @@ repositories {
 
 dependencies {
     // Any external dependency you also want to include
+    implementation("com.google.code.gson:gson:2.10.1")
 }

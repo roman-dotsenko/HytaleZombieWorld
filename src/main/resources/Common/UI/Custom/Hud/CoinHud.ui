@@ -1,0 +1,17 @@
+$Common = "Common.ui";
+
+// Define a texture variable (path relative to this .ui file)
+@MyTex = PatchStyle(TexturePath: "MyBackground.png");
+
+Group {
+    LayoutMode: Center;
+
+    Group #CoinHud {
+        Anchor: (Width: 800, Height: 1000);
+        LayoutMode: Top;
+        Label #CoinValue {
+            Style: (FontSize: 32, Alignment: Center);
+            Text: "MyText";
+        }
+    }
+}

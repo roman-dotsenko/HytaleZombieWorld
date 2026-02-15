@@ -1,0 +1,121 @@
+﻿Zombie World - Hytale Mod Design Document
+1. Vision Statement
+A high-intensity, wave-based survival mod for Hytale where players fight escalating undead threats, manage a complex economy, and evolve their characters through branching class paths.
+2. Shop & Stat Progression
+The shop is the heart of the "Break Phase." Instead of just buying items, players invest in Stat Attributes and Gear Paths.
+2.1 Melee Attribute Upgrades
+Players can invest in individual melee stats before specializing into a class.
+* Attack Power (AP): Raw damage per hit.
+* Attack Speed: Reduces the cooldown between swings/animations.
+* Knockback Magnitude: How far enemies are pushed back (useful for crowd control).
+* Cleave/AoE: Percentage of damage dealt to enemies adjacent to the primary target.
+* Lifesteal: Small percentage of HP recovered on successful hits.
+2.2 Ranged Attribute Upgrades
+To address the "investment" issue, Ranged is treated as a high-reward high-skill floor path.
+* Projectile Velocity: Speed of arrows/bullets.
+* Reload/Draw Speed: How quickly the next shot can be fired.
+* Critical Chance: Percentage chance to deal double damage.
+* Piercing: Number of enemies a single projectile can pass through.
+* Ammo Capacity/Efficiency: Reduces the need to buy ammo or increases magazine size.
+3. Class Specialization (The Branching Path)
+Upgrades are linear until a "Pivot Point" (usually after 5 levels in a base stat). At this point, the player chooses a specialized Class.
+Melee Path Branches
+Class
+	Unlock Requirement
+	Unique Perk
+	Berserker
+	Level 5 Attack Power
+	Adrenaline: Damage increases as your HP decreases.
+	Guardian
+	Level 5 Knockback
+	Shield Wall: Blocking reflects damage and stuns enemies.
+	Slayer
+	Level 5 Attack Speed
+	Dash: Replaces dodge with a damaging teleport/dash.
+	Ranged Path Branches
+Class
+	Unlock Requirement
+	Unique Perk
+	Sharpshooter
+	Level 5 Velocity
+	Headshot Multiplier: Massive damage bonus for precision hits.
+	Trapper
+	Level 5 Reload Speed
+	Elemental Shots: Projectiles leave fire or ice patches on impact.
+	Desperado
+	Level 5 Ammo Efficiency
+	Fan the Hammer: Toggle to fire all remaining ammo in a rapid burst.
+	4. The Ranged "Investment" Problem
+1. Starter Kit: Provide a "Rusty Slingshot" or "Weak Bow" for free at Wave 1.
+2. Distance Bonus: Ranged kills grant a 1.2x Coin multiplier if the enemy is killed from $>15$ blocks away.
+3. Utility: Ranged weapons can "stagger" bosses from a distance.
+5. Economy & Wave Control Mechanics
+5.1 The Break Phase
+* Smart Break Timer: Default 60 seconds.
+* Player Forced Start: Players can interact with a "Ready" object or command to end the break immediately.
+* Skip Bonus: Every second remaining on the timer when forced grants a small coin bonus ($+1$ per second per player).
+5.2 Wave Progression (Trigger Logic)
+The flow of combat is governed by Time-Based Ticks.
+* Wave Ticks: A wave is not a single event but a sequence of timed spawns.
+* The "Force Tick" Mechanic: If all enemies from a current tick are killed before the next tick timer expires, the next tick is automatically triggered early to keep the pace high.
+6. Wave Structure (Predefined & Cyclic)
+* Wave 1-10: Tutorial/Onboarding. Introduces basic Zombies, Crawlers, and Sprinters.
+* Wave 11-20: Introduction of armored variants and the first Mini-Boss.
+* Wave 21+: The Infinite Cycle.
+   * Health scaling: $HP_{new} = HP_{base} \times (1.15^{Wave-20})$.
+   * Spawn Rate scaling: Increases the "Enemies per Tick" by 1 every 5 waves.
+7. Configuration Examples
+7.1 Wave Configuration
+{
+  "wave_id": 10,
+  "display_name": "The Horde's Arrival",
+  "break_duration": 45,
+  "ticks": [
+    {
+      "delay_from_wave_start": 0,
+      "spawns": [
+        { "mob_id": "zombie_basic", "count": 15 },
+        { "mob_id": "zombie_sprinter", "count": 5 }
+      ]
+    },
+    {
+      "delay_from_wave_start": 30,
+      "spawns": [
+        { "mob_id": "zombie_armored", "count": 8 },
+        { "mob_id": "mini_boss_brute", "count": 1 }
+      ]
+    }
+  ],
+  "is_boss_wave": true
+}
+
+
+7.2 Shop & Stat Configuration
+{
+  "stat_id": "melee_attack_power",
+  "base_cost": 100,
+  "cost_multiplier": 1.5,
+  "max_level": 10,
+  "increments": [
+    { "level": 1, "bonus_damage": 2 },
+    { "level": 5, "unlocks_class_pivot": true }
+  ]
+}
+
+
+7.3 Class Definition
+{
+  "class_id": "berserker",
+  "name": "Berserker",
+  "requirements": {
+    "stat_id": "melee_attack_power",
+    "min_level": 5
+  },
+  "perks": [
+    {
+      "id": "adrenaline",
+      "scaling_type": "missing_health_percent",
+      "multiplier": 0.5
+    }
+  ]
+}
