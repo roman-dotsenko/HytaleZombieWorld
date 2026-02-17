@@ -1,0 +1,10 @@
+Group #CoinContainer {
+  LayoutMode: Left;
+  Padding: (Full: 8);
+  Anchor: (Top: 0, Left: 0, Width: 600, Height: 70);
+  Label #CoinValue {
+    Anchor: (Top: 10, Left: 240, Width: 100, Height: 50);
+    Text: "Coins: 0";
+    Style: (FontSize: 14, TextColor: #ffffff, RenderBold: true);
+  }
+}

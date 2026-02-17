@@ -7,7 +7,9 @@ import com.hypixel.hytale.server.core.plugin.JavaPluginInit;
 import com.hypixel.hytale.server.core.universe.world.storage.EntityStore;
 import dev.hytalemodding.bootstrap.GameBootstrap;
 import dev.hytalemodding.core.GameDirector;
+import dev.hytalemodding.economy.EconomyService;
 import dev.hytalemodding.events.PlayerReadyHandler;
+import dev.hytalemodding.progression.ProgressionService;
 import dev.hytalemodding.state.PlayerClassData;
 import dev.hytalemodding.state.PlayerEconomyData;
 import dev.hytalemodding.state.PlayerStatsData;
@@ -25,6 +27,8 @@ public class Main extends JavaPlugin {
     private ComponentType<EntityStore, WaveStateData> waveStateComponent;
     private ComponentType<EntityStore, SpawnedEnemyData> spawnedEnemyComponent;
     private GameDirector gameDirector;
+    private ProgressionService progressionService;
+    private EconomyService economyService;
 
     public Main(@Nonnull JavaPluginInit init) {
         super(init);
@@ -88,5 +92,21 @@ public class Main extends JavaPlugin {
 
     public void setGameDirector(GameDirector gameDirector) {
         this.gameDirector = gameDirector;
+    }
+
+    public ProgressionService getProgressionService() {
+        return this.progressionService;
+    }
+
+    public void setProgressionService(ProgressionService progressionService) {
+        this.progressionService = progressionService;
+    }
+
+    public EconomyService getEconomyService() {
+        return this.economyService;
+    }
+
+    public void setEconomyService(EconomyService economyService) {
+        this.economyService = economyService;
     }
 }

@@ -1,0 +1,6 @@
+{
+  "rewards": [
+    { "mob_id": "Skeleton", "coins": 10 },
+    { "mob_id": "Skeleton_Archer", "coins": 20 }
+  ]
+}

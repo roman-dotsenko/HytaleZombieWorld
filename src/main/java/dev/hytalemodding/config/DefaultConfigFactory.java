@@ -25,15 +25,40 @@ public class DefaultConfigFactory {
 
     public List<StatConfig> createDefaultStatConfigs() {
         return List.of(
-            new StatConfig("melee_attack_power", 100, 1.5, 10),
-            new StatConfig("ranged_velocity", 120, 1.6, 10)
+            new StatConfig(
+                "melee_attack_power",
+                100,
+                1.5,
+                10,
+                List.of(
+                    new StatIncrement(1, 2.0, 0.0),
+                    new StatIncrement(5, 5.0, 0.0)
+                )
+            ),
+            new StatConfig(
+                "melee_attack_speed",
+                110,
+                1.4,
+                10,
+                List.of(
+                    new StatIncrement(1, 0.0, 0.05),
+                    new StatIncrement(5, 0.0, 0.10)
+                )
+            )
         );
     }
 
     public List<ClassConfig> createDefaultClassConfigs() {
         return List.of(
             new ClassConfig("berserker", "Berserker", "melee_attack_power", 5, List.of("adrenaline")),
-            new ClassConfig("sharpshooter", "Sharpshooter", "ranged_velocity", 5, List.of("headshot_multiplier"))
+            new ClassConfig("slayer", "Slayer", "melee_attack_speed", 5, List.of("dash"))
+        );
+    }
+
+    public List<EnemyRewardConfig> createDefaultEnemyRewards() {
+        return List.of(
+            new EnemyRewardConfig("Skeleton", 10),
+            new EnemyRewardConfig("Skeleton_Archer", 20)
         );
     }
 }

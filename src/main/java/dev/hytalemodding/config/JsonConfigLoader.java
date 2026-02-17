@@ -43,7 +43,13 @@ public class JsonConfigLoader {
 
         List<StatConfig> stats = new ArrayList<>();
         for (StatEntry entry : file.stats) {
-            stats.add(new StatConfig(entry.statId, entry.baseCost, entry.costMultiplier, entry.maxLevel));
+            List<StatIncrement> increments = new ArrayList<>();
+            if (entry.increments != null) {
+                for (StatIncrementEntry inc : entry.increments) {
+                    increments.add(new StatIncrement(inc.level, inc.bonusDamage, inc.bonusAttackSpeed));
+                }
+            }
+            stats.add(new StatConfig(entry.statId, entry.baseCost, entry.costMultiplier, entry.maxLevel, increments));
         }
 
         return stats;
@@ -64,6 +70,20 @@ public class JsonConfigLoader {
         }
 
         return classes;
+    }
+
+    public List<EnemyRewardConfig> loadEnemyRewards() {
+        RewardConfigFile file = loadResource("rewards.json", RewardConfigFile.class);
+        if (file == null || file.rewards == null) {
+            return null;
+        }
+
+        List<EnemyRewardConfig> rewards = new ArrayList<>();
+        for (RewardEntry entry : file.rewards) {
+            rewards.add(new EnemyRewardConfig(entry.mobId, entry.coins));
+        }
+
+        return rewards;
     }
 
     private WaveDefinition toWaveDefinition(WaveEntry entry) {
@@ -170,6 +190,15 @@ public class JsonConfigLoader {
         private double costMultiplier;
         @SerializedName("max_level")
         private int maxLevel;
+        private List<StatIncrementEntry> increments;
+    }
+
+    private static class StatIncrementEntry {
+        private int level;
+        @SerializedName("bonus_damage")
+        private double bonusDamage;
+        @SerializedName("bonus_attack_speed")
+        private double bonusAttackSpeed;
     }
 
     private static class ClassConfigFile {
@@ -203,5 +232,15 @@ public class JsonConfigLoader {
 
     private static class PerkEntry {
         private String id;
+    }
+
+    private static class RewardConfigFile {
+        private List<RewardEntry> rewards;
+    }
+
+    private static class RewardEntry {
+        @SerializedName("mob_id")
+        private String mobId;
+        private int coins;
     }
 }

@@ -7,6 +7,7 @@ public class InMemoryConfigRepository implements ConfigRepository {
     private final GameConfig gameConfig = this.factory.createDefaultGameConfig();
     private final List<StatConfig> statConfigs = this.factory.createDefaultStatConfigs();
     private final List<ClassConfig> classConfigs = this.factory.createDefaultClassConfigs();
+    private final List<EnemyRewardConfig> enemyRewards = this.factory.createDefaultEnemyRewards();
 
     @Override
     public GameConfig getGameConfig(String worldName) {
@@ -21,5 +22,10 @@ public class InMemoryConfigRepository implements ConfigRepository {
     @Override
     public List<ClassConfig> getClassConfigs() {
         return this.classConfigs;
+    }
+
+    @Override
+    public List<EnemyRewardConfig> getEnemyRewards() {
+        return this.enemyRewards;
     }
 }

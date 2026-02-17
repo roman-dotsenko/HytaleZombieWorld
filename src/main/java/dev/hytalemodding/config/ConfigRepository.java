@@ -8,4 +8,6 @@ public interface ConfigRepository {
     List<StatConfig> getStatConfigs();
 
     List<ClassConfig> getClassConfigs();
+
+    List<EnemyRewardConfig> getEnemyRewards();
 }

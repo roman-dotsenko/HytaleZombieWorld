@@ -12,14 +12,14 @@
       ]
     },
     {
-      "class_id": "sharpshooter",
-      "name": "Sharpshooter",
+      "class_id": "slayer",
+      "name": "Slayer",
       "requirements": {
-        "stat_id": "ranged_velocity",
+        "stat_id": "melee_attack_speed",
         "min_level": 5
       },
       "perks": [
-        { "id": "headshot_multiplier", "multiplier": 2.0 }
+        { "id": "dash", "multiplier": 1.0 }
       ]
     }
   ]

@@ -5,12 +5,14 @@ public class StatConfig {
     private final int baseCost;
     private final double costMultiplier;
     private final int maxLevel;
+    private final java.util.List<StatIncrement> increments;
 
-    public StatConfig(String statId, int baseCost, double costMultiplier, int maxLevel) {
+    public StatConfig(String statId, int baseCost, double costMultiplier, int maxLevel, java.util.List<StatIncrement> increments) {
         this.statId = statId;
         this.baseCost = baseCost;
         this.costMultiplier = costMultiplier;
         this.maxLevel = maxLevel;
+        this.increments = java.util.Collections.unmodifiableList(new java.util.ArrayList<>(increments));
     }
 
     public String getStatId() {
@@ -27,5 +29,9 @@ public class StatConfig {
 
     public int getMaxLevel() {
         return this.maxLevel;
+    }
+
+    public java.util.List<StatIncrement> getIncrements() {
+        return this.increments;
     }
 }
